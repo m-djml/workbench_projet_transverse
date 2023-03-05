@@ -1,0 +1,369 @@
+Open On-Chip Debugger 0.11.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+User : 13 1 options.c:63 configuration_output_handler(): debug_level: 3
+User : 14 1 options.c:63 configuration_output_handler(): 
+Debug: 15 1 options.c:244 add_default_dirs(): bindir=/usr/bin
+Debug: 16 1 options.c:245 add_default_dirs(): pkgdatadir=/usr/share/openocd
+Debug: 17 1 options.c:246 add_default_dirs(): exepath=/usr/bin
+Debug: 18 1 options.c:247 add_default_dirs(): bin2data=../share/openocd
+Debug: 19 1 configuration.c:42 add_script_search_dir(): adding /root/.config/openocd
+Debug: 20 1 configuration.c:42 add_script_search_dir(): adding /root/.openocd
+Debug: 21 1 configuration.c:42 add_script_search_dir(): adding /usr/bin/../share/openocd/site
+Debug: 22 1 configuration.c:42 add_script_search_dir(): adding /usr/bin/../share/openocd/scripts
+Debug: 23 1 configuration.c:97 find_file(): found /usr/share/openocd/scripts/board/stm32ldiscovery.cfg
+Debug: 24 1 configuration.c:97 find_file(): found /usr/bin/../share/openocd/scripts/interface/stlink.cfg
+Debug: 25 2 command.c:146 script_debug(): command - adapter driver hla
+Debug: 27 2 command.c:146 script_debug(): command - hla_layout stlink
+Debug: 29 2 hla_interface.c:242 hl_interface_handle_layout_command(): hl_interface_handle_layout_command
+Debug: 30 2 command.c:146 script_debug(): command - hla_device_desc ST-LINK
+Debug: 32 2 hla_interface.c:216 hl_interface_handle_device_desc_command(): hl_interface_handle_device_desc_command
+Debug: 33 2 command.c:146 script_debug(): command - hla_vid_pid 0x0483 0x3744 0x0483 0x3748 0x0483 0x374b 0x0483 0x374d
+Debug: 35 2 command.c:146 script_debug(): command - transport select hla_swd
+Debug: 36 2 hla_transport.c:205 hl_swd_transport_select(): hl_swd_transport_select
+Debug: 37 2 configuration.c:97 find_file(): found /usr/bin/../share/openocd/scripts/target/stm32l1.cfg
+Debug: 38 2 configuration.c:97 find_file(): found /usr/bin/../share/openocd/scripts/target/swj-dp.tcl
+Debug: 39 2 command.c:146 script_debug(): command - transport select
+Debug: 40 2 configuration.c:97 find_file(): found /usr/bin/../share/openocd/scripts/mem_helper.tcl
+Debug: 41 2 command.c:146 script_debug(): command - add_usage_text mrw address
+Debug: 43 2 command.c:1115 help_add_command(): added 'mrw' help text
+Debug: 44 2 command.c:146 script_debug(): command - add_help_text mrw Returns value of word in memory.
+Debug: 46 2 command.c:1128 help_add_command(): added 'mrw' help text
+Debug: 47 2 command.c:146 script_debug(): command - add_usage_text mrh address
+Debug: 49 2 command.c:1115 help_add_command(): added 'mrh' help text
+Debug: 50 2 command.c:146 script_debug(): command - add_help_text mrh Returns value of halfword in memory.
+Debug: 52 2 command.c:1128 help_add_command(): added 'mrh' help text
+Debug: 53 2 command.c:146 script_debug(): command - add_usage_text mrb address
+Debug: 55 2 command.c:1115 help_add_command(): added 'mrb' help text
+Debug: 56 2 command.c:146 script_debug(): command - add_help_text mrb Returns value of byte in memory.
+Debug: 58 2 command.c:1128 help_add_command(): added 'mrb' help text
+Debug: 59 2 command.c:146 script_debug(): command - add_usage_text mmw address setbits clearbits
+Debug: 61 2 command.c:1115 help_add_command(): added 'mmw' help text
+Debug: 62 2 command.c:146 script_debug(): command - add_help_text mmw Modify word in memory. new_val = (old_val & ~clearbits) | setbits;
+Debug: 64 2 command.c:1128 help_add_command(): added 'mmw' help text
+Debug: 65 2 command.c:146 script_debug(): command - adapter speed 300
+Debug: 67 2 core.c:1822 jtag_config_khz(): handle jtag khz
+Debug: 68 2 core.c:1785 adapter_khz_to_speed(): convert khz to interface specific speed value
+Debug: 69 2 core.c:1785 adapter_khz_to_speed(): convert khz to interface specific speed value
+Debug: 70 2 command.c:146 script_debug(): command - adapter srst delay 100
+Debug: 72 2 command.c:146 script_debug(): command - transport select
+Debug: 73 2 command.c:146 script_debug(): command - transport select
+Debug: 74 2 command.c:146 script_debug(): command - transport select
+Debug: 75 2 command.c:146 script_debug(): command - transport select
+Debug: 76 2 command.c:146 script_debug(): command - swd newdap stm32l1 cpu -irlen 4 -ircapture 0x1 -irmask 0xf -expected-id 0x2ba01477
+Debug: 77 2 hla_tcl.c:110 jim_hl_newtap_cmd(): Creating New Tap, Chip: stm32l1, Tap: cpu, Dotted: stm32l1.cpu, 8 params
+Debug: 78 2 hla_tcl.c:121 jim_hl_newtap_cmd(): Processing option: -irlen
+Debug: 79 2 hla_tcl.c:121 jim_hl_newtap_cmd(): Processing option: -ircapture
+Debug: 80 2 hla_tcl.c:121 jim_hl_newtap_cmd(): Processing option: -irmask
+Debug: 81 2 hla_tcl.c:121 jim_hl_newtap_cmd(): Processing option: -expected-id
+Debug: 82 2 core.c:1484 jtag_tap_init(): Created Tap: stm32l1.cpu @ abs position 0, irlen 0, capture: 0x0 mask: 0x0
+Debug: 83 2 command.c:146 script_debug(): command - dap create stm32l1.dap -chain-position stm32l1.cpu
+Debug: 84 2 command.c:146 script_debug(): command - transport select
+Debug: 85 2 command.c:146 script_debug(): command - target create stm32l1.cpu cortex_m -endian little -dap stm32l1.dap
+Info : 86 2 target.c:5668 target_create(): The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+Debug: 87 2 hla_target.c:203 adapter_target_create(): adapter_target_create
+Debug: 88 2 hla_target.c:173 adapter_init_arch_info(): adapter_init_arch_info
+Debug: 89 3 command.c:375 register_command(): command 'rtt' is already registered in '<global>' context
+Debug: 90 3 command.c:146 script_debug(): command - stm32l1.cpu configure -work-area-phys 0x20000000 -work-area-size 0x4000 -work-area-backup 0
+Debug: 91 3 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 92 3 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 93 3 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 94 3 command.c:146 script_debug(): command - flash bank stm32l1.flash stm32lx 0x08000000 0 0 0 stm32l1.cpu
+Debug: 96 3 tcl.c:1319 handle_flash_bank_command(): 'stm32lx' driver usage field missing
+Debug: 97 3 command.c:146 script_debug(): command - reset_config srst_nogate
+Debug: 99 3 command.c:146 script_debug(): command - transport select
+Debug: 100 3 command.c:146 script_debug(): command - stm32l1.cpu configure -event reset-init 
+	stm32l_enable_HSI
+
+Debug: 101 3 command.c:146 script_debug(): command - stm32l1.cpu configure -event reset-start 
+	adapter speed 300
+
+Debug: 102 3 command.c:146 script_debug(): command - stm32l1.cpu configure -event examine-end 
+	# DBGMCU_CR |= DBG_STANDBY | DBG_STOP | DBG_SLEEP
+	mmw 0xE0042004 0x00000007 0
+
+	# Stop watchdog counters during halt
+	# DBGMCU_APB1_FZ |= DBG_IWDG_STOP | DBG_WWDG_STOP
+	mmw 0xE0042008 0x00001800 0
+
+Debug: 103 3 command.c:146 script_debug(): command - stm32l1.cpu configure -event trace-config 
+	# Set TRACE_IOEN; TRACE_MODE is set to async; when using sync
+	# change this value accordingly to configure trace pins
+	# assignment
+	mmw 0xE0042004 0x00000020 0
+
+Debug: 104 3 command.c:146 script_debug(): command - reset_config srst_only
+User : 106 3 options.c:63 configuration_output_handler(): srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+User : 107 3 options.c:63 configuration_output_handler(): 
+Debug: 108 3 configuration.c:97 find_file(): found /usr/share/openocd/scripts/interface/stlink.cfg
+Debug: 109 3 command.c:146 script_debug(): command - adapter driver hla
+Warn : 111 3 adapter.c:108 handle_adapter_driver_command(): Interface already configured, ignoring
+Debug: 112 3 command.c:146 script_debug(): command - hla_layout stlink
+Debug: 114 3 hla_interface.c:242 hl_interface_handle_layout_command(): hl_interface_handle_layout_command
+Error: 115 3 hla_interface.c:250 hl_interface_handle_layout_command(): already specified hl_layout stlink
+Debug: 116 3 command.c:146 script_debug(): command - hla_device_desc ST-LINK
+Debug: 118 3 hla_interface.c:216 hl_interface_handle_device_desc_command(): hl_interface_handle_device_desc_command
+Debug: 119 3 command.c:146 script_debug(): command - hla_vid_pid 0x0483 0x3744 0x0483 0x3748 0x0483 0x374b 0x0483 0x374d
+Debug: 121 3 command.c:146 script_debug(): command - init
+Debug: 123 3 command.c:146 script_debug(): command - target init
+Debug: 125 3 command.c:146 script_debug(): command - target names
+Debug: 126 3 command.c:146 script_debug(): command - stm32l1.cpu cget -event gdb-flash-erase-start
+Debug: 127 3 command.c:146 script_debug(): command - stm32l1.cpu configure -event gdb-flash-erase-start reset init
+Debug: 128 3 command.c:146 script_debug(): command - stm32l1.cpu cget -event gdb-flash-write-end
+Debug: 129 3 command.c:146 script_debug(): command - stm32l1.cpu configure -event gdb-flash-write-end reset halt
+Debug: 130 3 command.c:146 script_debug(): command - stm32l1.cpu cget -event gdb-attach
+Debug: 131 3 command.c:146 script_debug(): command - stm32l1.cpu configure -event gdb-attach halt 1000
+Debug: 132 3 target.c:1639 handle_target_init_command(): Initializing targets...
+Debug: 133 3 hla_target.c:193 adapter_init_target(): adapter_init_target
+Debug: 134 3 semihosting_common.c:99 semihosting_common_init():  
+Debug: 135 3 hla_interface.c:109 hl_interface_init(): hl_interface_init
+Debug: 136 3 hla_layout.c:95 hl_layout_init(): hl_layout_init
+Debug: 137 3 core.c:1785 adapter_khz_to_speed(): convert khz to interface specific speed value
+Debug: 138 3 core.c:1789 adapter_khz_to_speed(): have interface set up
+Debug: 139 3 core.c:1785 adapter_khz_to_speed(): convert khz to interface specific speed value
+Debug: 140 3 core.c:1789 adapter_khz_to_speed(): have interface set up
+Info : 141 3 core.c:1565 adapter_init(): clock speed 300 kHz
+Debug: 142 3 openocd.c:143 handle_init_command(): Debug Adapter init complete
+Debug: 143 3 command.c:146 script_debug(): command - transport init
+Debug: 145 3 transport.c:229 handle_transport_init(): handle_transport_init
+Debug: 146 3 hla_transport.c:156 hl_transport_init(): hl_transport_init
+Debug: 147 3 hla_transport.c:173 hl_transport_init(): current transport hla_swd
+Debug: 148 3 hla_interface.c:42 hl_interface_open(): hl_interface_open
+Debug: 149 3 hla_layout.c:40 hl_layout_open(): hl_layout_open
+Debug: 150 3 stlink_usb.c:2819 stlink_usb_open(): stlink_usb_open
+Debug: 151 3 stlink_usb.c:2831 stlink_usb_open(): transport: 4 vid: 0x0483 pid: 0x3744 serial: 
+Debug: 152 3 stlink_usb.c:2831 stlink_usb_open(): transport: 4 vid: 0x0483 pid: 0x3748 serial: 
+Debug: 153 3 stlink_usb.c:2831 stlink_usb_open(): transport: 4 vid: 0x0483 pid: 0x374b serial: 
+Debug: 154 4 stlink_usb.c:2831 stlink_usb_open(): transport: 4 vid: 0x0483 pid: 0x374d serial: 
+Info : 155 14 stlink_usb.c:1098 stlink_usb_version(): STLINK V2J17S0 (API v2) VID:PID 0483:3748
+Debug: 156 14 stlink_usb.c:1323 stlink_usb_exit_mode(): MODE: 0x01
+Info : 157 14 stlink_usb.c:1134 stlink_usb_check_voltage(): Target voltage: 2.920499
+Debug: 158 14 stlink_usb.c:1391 stlink_usb_init_mode(): MODE: 0x01
+Debug: 159 15 stlink_usb.c:1450 stlink_usb_init_mode(): MODE: 0x02
+Debug: 160 15 stlink_usb.c:2990 stlink_usb_open(): Using TAR autoincrement: 4096
+Debug: 161 16 core.c:640 adapter_system_reset(): SRST line released
+Debug: 162 117 hla_interface.c:67 hl_interface_init_target(): hl_interface_init_target
+Debug: 163 117 stlink_usb.c:1683 stlink_usb_idcode(): IDCODE: 0x2BA01477
+Debug: 164 117 command.c:146 script_debug(): command - dap init
+Debug: 166 117 arm_dap.c:106 dap_init_all(): Initializing all DAPs ...
+Debug: 167 117 openocd.c:160 handle_init_command(): Examining targets...
+Debug: 168 117 target.c:1825 target_call_event_callbacks(): target event 19 (examine-start) for core stm32l1.cpu
+Debug: 169 117 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe000ed00 4 1
+Debug: 170 118 target.c:2587 target_read_u32(): address: 0xe000ed00, value: 0x412fc230
+Debug: 171 118 cortex_m.c:2000 cortex_m_examine(): Cortex-M3 r2p0 processor detected
+Debug: 172 118 cortex_m.c:2012 cortex_m_examine(): cpuid: 0x412fc230
+Debug: 173 118 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe000edf0 4 1
+Debug: 174 118 target.c:2587 target_read_u32(): address: 0xe000edf0, value: 0x01010001
+Debug: 175 118 target.c:2675 target_write_u32(): address: 0xe000edfc, value: 0x01000000
+Debug: 176 118 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe000edfc 4 1
+Debug: 177 119 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0002000 4 1
+Debug: 178 119 target.c:2587 target_read_u32(): address: 0xe0002000, value: 0x00000260
+Debug: 179 119 target.c:2675 target_write_u32(): address: 0xe0002008, value: 0x00000000
+Debug: 180 119 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0002008 4 1
+Debug: 181 119 target.c:2675 target_write_u32(): address: 0xe000200c, value: 0x00000000
+Debug: 182 119 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe000200c 4 1
+Debug: 183 120 target.c:2675 target_write_u32(): address: 0xe0002010, value: 0x00000000
+Debug: 184 120 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0002010 4 1
+Debug: 185 120 target.c:2675 target_write_u32(): address: 0xe0002014, value: 0x00000000
+Debug: 186 120 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0002014 4 1
+Debug: 187 120 target.c:2675 target_write_u32(): address: 0xe0002018, value: 0x00000000
+Debug: 188 120 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0002018 4 1
+Debug: 189 121 target.c:2675 target_write_u32(): address: 0xe000201c, value: 0x00000000
+Debug: 190 121 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe000201c 4 1
+Debug: 191 121 target.c:2675 target_write_u32(): address: 0xe0002020, value: 0x00000000
+Debug: 192 121 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0002020 4 1
+Debug: 193 121 target.c:2675 target_write_u32(): address: 0xe0002024, value: 0x00000000
+Debug: 194 121 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0002024 4 1
+Debug: 195 121 cortex_m.c:2113 cortex_m_examine(): FPB fpcr 0x260, numcode 6, numlit 2
+Debug: 196 122 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0001000 4 1
+Debug: 197 122 target.c:2587 target_read_u32(): address: 0xe0001000, value: 0x40000000
+Debug: 198 122 cortex_m.c:1830 cortex_m_dwt_setup(): DWT_CTRL: 0x40000000
+Debug: 199 122 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0001fbc 4 1
+Debug: 200 122 target.c:2587 target_read_u32(): address: 0xe0001fbc, value: 0x00000000
+Debug: 201 122 cortex_m.c:1837 cortex_m_dwt_setup(): DWT_DEVARCH: 0x0
+Debug: 202 122 target.c:2675 target_write_u32(): address: 0xe0001028, value: 0x00000000
+Debug: 203 122 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0001028 4 1
+Debug: 204 123 target.c:2675 target_write_u32(): address: 0xe0001038, value: 0x00000000
+Debug: 205 123 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0001038 4 1
+Debug: 206 123 target.c:2675 target_write_u32(): address: 0xe0001048, value: 0x00000000
+Debug: 207 123 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0001048 4 1
+Debug: 208 123 target.c:2675 target_write_u32(): address: 0xe0001058, value: 0x00000000
+Debug: 209 123 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0001058 4 1
+Debug: 210 124 cortex_m.c:1884 cortex_m_dwt_setup(): DWT dwtcr 0x40000000, comp 4, watch/trigger
+Info : 211 124 cortex_m.c:2123 cortex_m_examine(): stm32l1.cpu: hardware has 6 breakpoints, 4 watchpoints
+Debug: 212 124 target.c:1825 target_call_event_callbacks(): target event 21 (examine-end) for core stm32l1.cpu
+Debug: 213 124 target.c:4773 target_handle_event(): target(0): stm32l1.cpu (hla_target) event: 21 (examine-end) action: 
+	# DBGMCU_CR |= DBG_STANDBY | DBG_STOP | DBG_SLEEP
+	mmw 0xE0042004 0x00000007 0
+
+	# Stop watchdog counters during halt
+	# DBGMCU_APB1_FZ |= DBG_IWDG_STOP | DBG_WWDG_STOP
+	mmw 0xE0042008 0x00001800 0
+
+Debug: 214 124 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0042004 4 1
+Debug: 215 124 command.c:146 script_debug(): command - mww 0xE0042004 7
+Debug: 217 124 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0042004 4 1
+Debug: 218 125 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0042008 4 1
+Debug: 219 125 command.c:146 script_debug(): command - mww 0xE0042008 6144
+Debug: 221 125 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0042008 4 1
+Debug: 222 126 command.c:146 script_debug(): command - flash init
+Debug: 224 126 tcl.c:1385 handle_flash_init_command(): Initializing flash devices...
+Debug: 225 126 command.c:146 script_debug(): command - nand init
+Debug: 227 126 tcl.c:498 handle_nand_init_command(): Initializing NAND devices...
+Debug: 228 126 command.c:146 script_debug(): command - pld init
+Debug: 230 127 pld.c:206 handle_pld_init_command(): Initializing PLDs...
+Info : 231 127 gdb_server.c:3503 gdb_target_start(): starting gdb server for stm32l1.cpu on 3333
+Info : 232 127 server.c:311 add_service(): Listening on port 3333 for gdb connections
+Debug: 233 127 command.c:146 script_debug(): command - reset halt
+Debug: 235 127 target.c:1844 target_call_reset_callbacks(): target reset 2 (halt)
+Debug: 236 127 command.c:146 script_debug(): command - target names
+Debug: 237 127 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-start
+Debug: 238 127 target.c:4773 target_handle_event(): target(0): stm32l1.cpu (hla_target) event: 9 (reset-start) action: 
+	adapter speed 300
+
+Debug: 239 127 command.c:146 script_debug(): command - adapter speed 300
+Debug: 241 127 core.c:1822 jtag_config_khz(): handle jtag khz
+Debug: 242 127 core.c:1785 adapter_khz_to_speed(): convert khz to interface specific speed value
+Debug: 243 127 core.c:1789 adapter_khz_to_speed(): have interface set up
+Debug: 244 127 core.c:1785 adapter_khz_to_speed(): convert khz to interface specific speed value
+Debug: 245 127 core.c:1789 adapter_khz_to_speed(): have interface set up
+Debug: 246 127 command.c:146 script_debug(): command - transport select
+Debug: 247 127 command.c:146 script_debug(): command - transport select
+Debug: 248 127 command.c:146 script_debug(): command - stm32l1.cpu invoke-event examine-start
+Debug: 249 127 command.c:146 script_debug(): command - stm32l1.cpu arp_examine allow-defer
+Debug: 250 127 command.c:146 script_debug(): command - stm32l1.cpu invoke-event examine-end
+Debug: 251 127 target.c:4773 target_handle_event(): target(0): stm32l1.cpu (hla_target) event: 21 (examine-end) action: 
+	# DBGMCU_CR |= DBG_STANDBY | DBG_STOP | DBG_SLEEP
+	mmw 0xE0042004 0x00000007 0
+
+	# Stop watchdog counters during halt
+	# DBGMCU_APB1_FZ |= DBG_IWDG_STOP | DBG_WWDG_STOP
+	mmw 0xE0042008 0x00001800 0
+
+Debug: 252 127 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0042004 4 1
+Debug: 253 128 command.c:146 script_debug(): command - mww 0xE0042004 7
+Debug: 255 128 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0042004 4 1
+Debug: 256 128 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0042008 4 1
+Debug: 257 128 command.c:146 script_debug(): command - mww 0xE0042008 6144
+Debug: 259 128 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0042008 4 1
+Debug: 260 129 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-assert-pre
+Debug: 261 129 command.c:146 script_debug(): command - transport select
+Debug: 262 129 command.c:146 script_debug(): command - stm32l1.cpu arp_reset assert 1
+Debug: 263 129 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 264 129 hla_target.c:344 hl_assert_reset(): hl_assert_reset
+Debug: 265 129 core.c:636 adapter_system_reset(): SRST line asserted
+Debug: 266 130 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-assert-post
+Debug: 267 130 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-deassert-pre
+Debug: 268 130 command.c:146 script_debug(): command - transport select
+Debug: 269 130 command.c:146 script_debug(): command - stm32l1.cpu arp_reset deassert 1
+Debug: 270 130 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 271 130 hla_target.c:403 hl_deassert_reset(): hl_deassert_reset
+Debug: 272 130 core.c:640 adapter_system_reset(): SRST line released
+Debug: 273 232 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-deassert-post
+Debug: 274 232 command.c:146 script_debug(): command - transport select
+Debug: 275 232 command.c:146 script_debug(): command - stm32l1.cpu was_examined
+Debug: 276 232 command.c:146 script_debug(): command - stm32l1.cpu arp_waitstate halted 1000
+Debug: 277 232 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe000edf8 4 1
+Debug: 278 233 target.c:2587 target_read_u32(): address: 0xe000edf8, value: 0x00000000
+Debug: 279 233 armv7m.c:341 armv7m_read_core_reg(): read r0 value 0x00000000
+Debug: 280 234 armv7m.c:341 armv7m_read_core_reg(): read r1 value 0x00000000
+Debug: 281 234 armv7m.c:341 armv7m_read_core_reg(): read r2 value 0x00000000
+Debug: 282 234 armv7m.c:341 armv7m_read_core_reg(): read r3 value 0x00000000
+Debug: 283 235 armv7m.c:341 armv7m_read_core_reg(): read r4 value 0x00000000
+Debug: 284 235 armv7m.c:341 armv7m_read_core_reg(): read r5 value 0x00000000
+Debug: 285 235 armv7m.c:341 armv7m_read_core_reg(): read r6 value 0x00000000
+Debug: 286 236 armv7m.c:341 armv7m_read_core_reg(): read r7 value 0x00000000
+Debug: 287 236 armv7m.c:341 armv7m_read_core_reg(): read r8 value 0x00000000
+Debug: 288 237 armv7m.c:341 armv7m_read_core_reg(): read r9 value 0x00000000
+Debug: 289 237 armv7m.c:341 armv7m_read_core_reg(): read r10 value 0x00000000
+Debug: 290 237 armv7m.c:341 armv7m_read_core_reg(): read r11 value 0x00000000
+Debug: 291 238 armv7m.c:341 armv7m_read_core_reg(): read r12 value 0x00000000
+Debug: 292 238 armv7m.c:341 armv7m_read_core_reg(): read sp value 0x20018000
+Debug: 293 239 armv7m.c:341 armv7m_read_core_reg(): read lr value 0xffffffff
+Debug: 294 239 armv7m.c:341 armv7m_read_core_reg(): read pc value 0x0800d690
+Debug: 295 239 armv7m.c:341 armv7m_read_core_reg(): read xPSR value 0x01000000
+Debug: 296 240 armv7m.c:341 armv7m_read_core_reg(): read msp value 0x20018000
+Debug: 297 240 armv7m.c:341 armv7m_read_core_reg(): read psp value 0x00000000
+Debug: 298 241 armv7m.c:341 armv7m_read_core_reg(): read pmsk_bpri_fltmsk_ctrl value 0x00000000
+Debug: 299 241 hla_target.c:286 adapter_debug_entry(): entered debug state in core mode: Thread at PC 0x0800d690, target->state: halted
+Debug: 300 241 target.c:1825 target_call_event_callbacks(): target event 0 (gdb-halt) for core stm32l1.cpu
+Debug: 301 241 target.c:1825 target_call_event_callbacks(): target event 1 (halted) for core stm32l1.cpu
+User : 302 241 armv7m.c:696 armv7m_arch_state(): target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x0800d690 msp: 0x20018000
+Debug: 303 241 hla_target.c:331 adapter_poll(): halted: PC: 0x0800d690
+Debug: 304 241 command.c:146 script_debug(): command - stm32l1.cpu curstate
+Debug: 305 241 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-end
+Debug: 306 241 command.c:146 script_debug(): command - flash write_image erase ciphers/pyjamask.hex
+Debug: 308 242 configuration.c:97 find_file(): found ciphers/pyjamask.hex
+Debug: 309 242 image.c:80 autodetect_image_type(): IHEX image detected.
+Debug: 310 242 configuration.c:97 find_file(): found ciphers/pyjamask.hex
+Debug: 311 242 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0042000 4 1
+Debug: 312 242 target.c:2587 target_read_u32(): address: 0xe0042000, value: 0x10f86427
+Debug: 313 242 stm32lx.c:747 stm32lx_probe(): device id = 0x10f86427
+Info : 314 242 stm32lx.c:760 stm32lx_probe(): Device: STM32L1xx (Cat.3 - Medium+ Density)
+Debug: 315 242 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0x1ff800cc 2 1
+Debug: 316 243 target.c:2611 target_read_u16(): address: 0x1ff800cc, value: 0x0100
+Info : 317 243 stm32lx.c:826 stm32lx_probe(): STM32L flash size is 256kb, base address is 0x8000000
+Warn : 318 243 core.c:795 flash_write_unlock_verify(): no flash bank found for address 0x00000000
+Debug: 319 243 command.c:146 script_debug(): command - reset run
+Debug: 321 243 target.c:1844 target_call_reset_callbacks(): target reset 1 (run)
+Debug: 322 243 command.c:146 script_debug(): command - target names
+Debug: 323 244 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-start
+Debug: 324 244 target.c:4773 target_handle_event(): target(0): stm32l1.cpu (hla_target) event: 9 (reset-start) action: 
+	adapter speed 300
+
+Debug: 325 244 command.c:146 script_debug(): command - adapter speed 300
+Debug: 327 244 core.c:1822 jtag_config_khz(): handle jtag khz
+Debug: 328 244 core.c:1785 adapter_khz_to_speed(): convert khz to interface specific speed value
+Debug: 329 244 core.c:1789 adapter_khz_to_speed(): have interface set up
+Debug: 330 244 core.c:1785 adapter_khz_to_speed(): convert khz to interface specific speed value
+Debug: 331 244 core.c:1789 adapter_khz_to_speed(): have interface set up
+Debug: 332 244 command.c:146 script_debug(): command - transport select
+Debug: 333 244 command.c:146 script_debug(): command - transport select
+Debug: 334 244 command.c:146 script_debug(): command - stm32l1.cpu invoke-event examine-start
+Debug: 335 244 command.c:146 script_debug(): command - stm32l1.cpu arp_examine allow-defer
+Debug: 336 244 command.c:146 script_debug(): command - stm32l1.cpu invoke-event examine-end
+Debug: 337 244 target.c:4773 target_handle_event(): target(0): stm32l1.cpu (hla_target) event: 21 (examine-end) action: 
+	# DBGMCU_CR |= DBG_STANDBY | DBG_STOP | DBG_SLEEP
+	mmw 0xE0042004 0x00000007 0
+
+	# Stop watchdog counters during halt
+	# DBGMCU_APB1_FZ |= DBG_IWDG_STOP | DBG_WWDG_STOP
+	mmw 0xE0042008 0x00001800 0
+
+Debug: 338 244 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0042004 4 1
+Debug: 339 244 command.c:146 script_debug(): command - mww 0xE0042004 7
+Debug: 341 244 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0042004 4 1
+Debug: 342 245 hla_target.c:602 adapter_read_memory(): adapter_read_memory 0xe0042008 4 1
+Debug: 343 245 command.c:146 script_debug(): command - mww 0xE0042008 6144
+Debug: 345 245 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe0042008 4 1
+Debug: 346 245 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-assert-pre
+Debug: 347 246 command.c:146 script_debug(): command - transport select
+Debug: 348 246 command.c:146 script_debug(): command - stm32l1.cpu arp_reset assert 0
+Debug: 349 246 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 350 246 hla_target.c:344 hl_assert_reset(): hl_assert_reset
+Debug: 351 246 core.c:636 adapter_system_reset(): SRST line asserted
+Debug: 352 247 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-assert-post
+Debug: 353 247 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-deassert-pre
+Debug: 354 247 command.c:146 script_debug(): command - transport select
+Debug: 355 247 command.c:146 script_debug(): command - stm32l1.cpu arp_reset deassert 0
+Debug: 356 247 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 357 247 hla_target.c:403 hl_deassert_reset(): hl_deassert_reset
+Debug: 358 247 core.c:640 adapter_system_reset(): SRST line released
+Debug: 359 349 target.c:1825 target_call_event_callbacks(): target event 3 (resume-start) for core stm32l1.cpu
+Debug: 360 349 hla_target.c:449 adapter_resume(): adapter_resume 1 0x00000000 0 0
+Debug: 361 349 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 362 349 target.c:2675 target_write_u32(): address: 0xe000edfc, value: 0x01000000
+Debug: 363 349 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe000edfc 4 1
+Debug: 364 350 armv7m.c:160 armv7m_restore_context():  
+Debug: 365 350 target.c:2675 target_write_u32(): address: 0xe000edf8, value: 0x00000000
+Debug: 366 350 hla_target.c:617 adapter_write_memory(): adapter_write_memory 0xe000edf8 4 1
+Debug: 367 351 target.c:1825 target_call_event_callbacks(): target event 2 (resumed) for core stm32l1.cpu
+Debug: 368 351 target.c:1825 target_call_event_callbacks(): target event 4 (resume-end) for core stm32l1.cpu
+Debug: 369 351 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-deassert-post
+Debug: 370 351 command.c:146 script_debug(): command - stm32l1.cpu invoke-event reset-end
+Debug: 371 351 command.c:146 script_debug(): command - exit
+Debug: 373 351 target.c:2172 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 374 351 hla_interface.c:117 hl_interface_quit(): hl_interface_quit
+Debug: 375 352 stlink_usb.c:1323 stlink_usb_exit_mode(): MODE: 0x02

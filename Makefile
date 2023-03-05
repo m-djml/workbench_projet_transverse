@@ -4,7 +4,6 @@ CC=arm-none-eabi-gcc
 AR=ar
 OPENOCD=openocd
 OBJCOPY=objcopy
-SCREEN=screen
 
 LIBDIR=./lib
 
@@ -70,8 +69,15 @@ SRC_OBJS = $(patsubst %.s,%.o, $(patsubst %.c,%.o, $(SRC_FILES)))
 # TODO: more ciphers to come:
 CIPHERS=ciphers/pyjamask.c
 CIPHERS_OBJS=$(CIPHERS:.c=.elf)
+CIPHERS_HEX=$(CIPHERS:.c=.hex)
 
-all: ciphers/pyjamask.elf
+all: $(CIPHERS_HEX)
+
+$(CIPHERS_OBJS): $(CIPHERS)
+	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
+$(CIPHERS_HEX): $(CIPHERS_OBJS)
+	objcopy -Oihex $< $@
 
 %.elf: %.o $(SRC_OBJS) lib/libstm32f4xxhal.a lib/libstm32f4xxbsp.a
 	$(CC) $(CFLAGS) -T$(LINKER_FILE) $<					\
@@ -82,6 +88,7 @@ all: ciphers/pyjamask.elf
 
 ################################################################
 # Cleaning
+
 
 clean:
 	rm -f lib/libstm32f4xxhal.a		\
@@ -106,8 +113,13 @@ reboot:
 	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
 	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
 
+# same thing but with openocd debug file generated
+%.upload_debug: %.hex
+	sudo $(OPENOCD) -d -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
+                -c "init; reset halt; flash write_image erase $<; reset run; exit" > openocd.log 2>&1 
+
 # Save serial input to the given file
-%.log: %.hex force
+%.log: %.hex
 	./bin/serial.sh $*.elf $< $@
 
 force:
