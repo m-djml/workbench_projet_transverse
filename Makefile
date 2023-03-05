@@ -75,7 +75,7 @@ all: ciphers/pyjamask.elf
 
 %.elf: %.o $(SRC_OBJS) lib/libstm32f4xxhal.a lib/libstm32f4xxbsp.a
 	$(CC) $(CFLAGS) -T$(LINKER_FILE) $<					\
-		src/stm32f4xx_it.o src/stm32f4xx_hal_msp.o			\
+		src/stm32f4xx_it.o 			\
 		src/syscalls.o src/system_stm32f4xx.o				\
 		src/startup_stm32f401xe.o src/main.o				\
 		 -o $@ $(LD_FLAGS)
@@ -98,23 +98,17 @@ clean-all:
 
 # Restart the board
 reboot:
-	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
+	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
 	                -c "init; reset; exit"
-
-# Read output on serial port (close with C-a \)
-read:
-	sudo $(SCREEN) /dev/ttyACM0 9600,cs7,ixoff
 
 # Load .hex file to the board
 %.upload: %.hex
-	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
+	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
 	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
 
 # Save serial input to the given file
-%.log: %.hex
-	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
-	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
-	./bin/serial.sh $@
+%.log: %.hex force
+	./bin/serial.sh $*.elf $< $@
 
 force:
 	true
