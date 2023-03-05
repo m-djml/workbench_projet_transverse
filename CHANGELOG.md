@@ -27,8 +27,11 @@
 <ul> <li> Rien pour l'instant. </li> </ul>
 <li> Modif Makefile </li>
 <ul> <li> pourquoi il efface le fichier .hex --> pb réglé en modifiant le makefile, reste à savoir pourquoi il ne charge pas le fichier hex dans la mémoire du board, essai de débug avec l'option "-d" pour openocd mais le debug est très long sur le terminal il faut trouver un moyen de rediriger le debug dans un fichier pour mieux lire.
+--> redirection du débug dans le fichier openocd.log réussi, il faut maintenant comprendre ce qui ne va pas a partir de ce fichier.
 </li>
 <li> <code>arm-none-eabi-objdump $BINARY -t | grep bench_lens | cut -f 1 -d  ' '</code> ne renvoie rien car le champ bench_lens n'existe pas dans le code assembleur de pyajamask, il n'ya que bench_speed.
+</li>
+<li> Un problème très gênant est apparu: <code> Warn : no flash bank found for address 0x00000000</code> lors de l'exécution d'un make ciphers/pyjamask.upload, alors que je n'ai rien modifié, et je n'ai pas touché aux fichiers de config, tout s'exécutait bien et tout d'un coup il y a ce warning qui semble empêcher l'exécution du reste du programme (la led du board clignote moins longtemps).
 </li>
 </li> </ul>
 </ol>
