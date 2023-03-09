@@ -1,6 +1,6 @@
 <h1> CHANGELOG </h1>
 </br>
-<h2> Pour le 10 février </h2>
+<h2> Pour le 10 mars </h2>
 <br>
 <h3> À faire : </h3>
 <ol> 
@@ -12,7 +12,7 @@
 <h3> Avancement : </h3>
 <ol> 
 <li> Optimisation </li>
-<ul> <li> Rien pour l'instant. </li> </ul>
+<ul><li> On a essayé de modifier le code de pyjamask pour les benchmarks</li></ul>
 <li> Modif Makefile </li>
 <ul> <li> Le nouveau board n'était pas reconnu par mon ordinateur (Ubuntu) mais il a fonctionné après avoir suivi les instructions sur cette page : https://freeelectron.ro/installing-st-link-v2-to-flash-stm32-targets-on-linux 
 </li>
