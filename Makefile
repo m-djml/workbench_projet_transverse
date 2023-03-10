@@ -15,6 +15,7 @@ LD_FLAGS=-L${LIBDIR}		\
           -Wl,--gc-sections
 
 CFLAGS=-Wall		\
+	-g	\
 	-mcpu=cortex-m4 \
 	-mlittle-endian \
 	-mthumb		\
@@ -63,9 +64,6 @@ lib/libstm32f4xxbsp.a: $(BSP_LIB_OBJS)
 SRC_FILES = $(wildcard src/*.c src/*.s)
 SRC_OBJS = $(patsubst %.s,%.o, $(patsubst %.c,%.o, $(SRC_FILES)))
 
-%.hex: %.elf
-	objcopy -Oihex $*.elf $*.hex
-
 # TODO: more ciphers to come:
 CIPHERS=ciphers/pyjamask.c
 CIPHERS_OBJS=$(CIPHERS:.c=.elf)
@@ -105,18 +103,18 @@ clean-all:
 
 # Restart the board
 reboot:
-	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
+	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
 	                -c "init; reset; exit"
 
 # Load .hex file to the board
 %.upload: %.hex
 	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
-	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
+	                -c "init; reset halt; flash write_image erase $<; init; reset halt; reset run; shutdown"
 
 # same thing but with openocd debug file generated
 %.upload_debug: %.hex
 	sudo $(OPENOCD) -d -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
-                -c "init; reset halt; flash write_image erase $<; reset run; exit" > openocd.log 2>&1 
+                -c "init; reset halt; flash write_image erase $<; reset run; exit" > openocd.log 2>&1
 
 # Save serial input to the given file
 %.log: %.hex
