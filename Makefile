@@ -188,3 +188,44 @@ clean:
 -include $(wildcard $(BUILD_DIR)/*.d)
 
 # *** EOF ***
+
+
+%.elf: %.o $(SRC_OBJS) lib/libstm32f4xxhal.a lib/libstm32f4xxbsp.a
+	$(CC) $(CFLAGS) -T$(LINKER_FILE) $<					\
+		src/stm32f4xx_it.o 			\
+		src/syscalls.o src/system_stm32f4xx.o				\
+		src/startup_stm32f401xe.o src/main.o				\
+		 -o $@ $(LD_FLAGS)
+
+################################################################
+# Cleaning
+
+clean:
+	rm -f lib/libstm32f4xxhal.a		\
+	      lib/libstm32f4xxbsp.a		\
+	      $(BSP_LIB_OBJS) $(HAL_LIB_OBJS)	\
+	      $(SRC_OBJS)			\
+	      $(CIPHERS_OBJS)			\
+
+clean-all:
+	make clean
+
+################################################################
+# Interactions with the board
+
+# Restart the board
+reboot:
+	sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
+	                -c "init; reset; exit"
+
+# Load .hex file to the board
+%.upload: %.hex
+	sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
+	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
+
+# Save serial input to the given file
+%.log: %.hex force
+	./bin/serial.sh $*.elf $< $@
+
+force:
+	true
