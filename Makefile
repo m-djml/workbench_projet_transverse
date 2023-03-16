@@ -191,13 +191,14 @@ clean:
 
 # *** EOF ***
 
-BOARD_MODEL=stm32ldiscovery
-
 # Load .hex file to the board
-%.upload: %.hex
-	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/$(BOARD_MODEL).cfg \
+build/stm32l1_pyjamask.upload: build/stm32l1_pyjamask.hex
+	sudo openocd -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
 	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
 
 # Save serial input to the given file
-%.log: %.hex force
-	serial.sh $*.elf $< $@
+build/stm32l1_pyjamask.log: build/stm32l1_pyjamask.hex force
+	bash ./serial.sh build/stm32l1_pyjamask.elf build/stm32l1_pyjamask.hex build/stm32l1_pyjamask.log
+
+force:
+	true

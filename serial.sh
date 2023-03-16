@@ -8,7 +8,7 @@ ADDR_LENS=`arm-none-eabi-objdump $BINARY -t | grep bench_lens | cut -f 1 -d  ' '
 ADDR_CYCLES=`arm-none-eabi-objdump $BINARY -t | grep bench_cycles | cut -f 1 -d  ' '`
 
 openocd -l /dev/null \
-        -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
+        -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
         &>/dev/null &
 # Get the pid of `openocd` (not `sudo opencd`)
 OPENOCDPID=$!
