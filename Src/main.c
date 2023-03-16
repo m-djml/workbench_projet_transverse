@@ -43,7 +43,13 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+extern uint32_t bench_speed();
 
+static void SystemClock_Config(void);
+static unsigned long get_cycle_count();
+
+unsigned long bench_cycles[] = {-1, -1, -1};
+int bench_lens[] = {-1, -1, -1};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -80,7 +86,13 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  for (int i = 0; i < 3; i++){
+    unsigned long t1 = get_cycle_count();
+    int len = bench_speed();
+    unsigned long cycles = get_cycle_count() - t1;
+    bench_lens[i] = len;
+    bench_cycles[i] = cycles;
+  }
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -178,3 +190,33 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
+static unsigned long get_cycle_count()
+{
+   /* retrieve the CPU cycles using the Cortex-M DWT->CYCCNT register
+    * avaialable only starting from CM3
+    */
+
+#if (__CORTEX_M >= 0x03U)
+    static int dwt_started = 0;
+    if( dwt_started == 0 )
+    {
+      dwt_started = 1;
+      /* Enable Tracing */
+        CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+#if (__CORTEX_M == 0x07U)
+        /* in Cortex M7, the trace needs to be unlocked
+         * via the DWT->LAR register with 0xC5ACCE55 value
+         */
+        DWT->LAR = 0xC5ACCE55;
+#endif
+        DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
+
+      /* Reset counter */
+      DWT->CYCCNT = 0;
+    }
+
+    return (unsigned long)DWT->CYCCNT;
+#else
+    return 0;
+#endif
+}

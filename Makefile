@@ -35,7 +35,8 @@ BUILD_DIR = build
 # source
 ######################################
 # C sources
-C_SOURCES =  \
+C_SOURCES = \
+ciphers/pyjamask.c \
 Src/main.c \
 Src/gpio.c \
 Src/stm32l1xx_it.c \
@@ -111,6 +112,7 @@ AS_INCLUDES =
 
 # C includes
 C_INCLUDES =  \
+-I./ciphers/arch                   \
 -IInc \
 -IDrivers/STM32L1xx_HAL_Driver/Inc \
 -IDrivers/STM32L1xx_HAL_Driver/Inc/Legacy \
@@ -180,7 +182,7 @@ $(BUILD_DIR):
 # clean up
 #######################################
 clean:
-	-rm -fR $(BUILD_DIR)
+	-rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.lst $(BUILD_DIR)/*.d 
   
 #######################################
 # dependencies
@@ -189,43 +191,13 @@ clean:
 
 # *** EOF ***
 
-
-%.elf: %.o $(SRC_OBJS) lib/libstm32f4xxhal.a lib/libstm32f4xxbsp.a
-	$(CC) $(CFLAGS) -T$(LINKER_FILE) $<					\
-		src/stm32f4xx_it.o 			\
-		src/syscalls.o src/system_stm32f4xx.o				\
-		src/startup_stm32f401xe.o src/main.o				\
-		 -o $@ $(LD_FLAGS)
-
-################################################################
-# Cleaning
-
-clean:
-	rm -f lib/libstm32f4xxhal.a		\
-	      lib/libstm32f4xxbsp.a		\
-	      $(BSP_LIB_OBJS) $(HAL_LIB_OBJS)	\
-	      $(SRC_OBJS)			\
-	      $(CIPHERS_OBJS)			\
-
-clean-all:
-	make clean
-
-################################################################
-# Interactions with the board
-
-# Restart the board
-reboot:
-	sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
-	                -c "init; reset; exit"
+BOARD_MODEL=stm32ldiscovery
 
 # Load .hex file to the board
 %.upload: %.hex
-	sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
+	sudo $(OPENOCD) -f /usr/share/openocd/scripts/board/$(BOARD_MODEL).cfg \
 	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
 
 # Save serial input to the given file
 %.log: %.hex force
-	./bin/serial.sh $*.elf $< $@
-
-force:
-	true
+	serial.sh $*.elf $< $@
