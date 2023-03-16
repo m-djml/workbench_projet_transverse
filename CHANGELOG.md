@@ -48,15 +48,14 @@
 
 # Avancement :
 
-Pour le 17 mars :
-- On a réussi à faire marcher le code de pyjamask sur le nouveau board STM32L100C-DISCO, on a des valeurs autour de 25730 cycles par octet chiffré.
+# Pour le 17 mars :
+1. On a réussi à faire marcher le code de pyjamask sur le nouveau board STM32L100C-DISCO, on a des valeurs autour de 25730 cycles par octet chiffré.
 
 Voici les étapes de notre raisonnement pour trouver pourquoi le code précédent le fonctionnait pas sur le nouveau board :
-
 - on se rend compte qu'énormément de fichiers de librairies C et autres fichiers ne correspondent pas au modèle de notre nouveau board.
-
 - on a installé stm32cubeMx pour essayer d'installer/générer les fichiers et librairies nécessaires pour le nouveau board (stm32l100c-disco)
-
 - on a généré les fichiers nécessaires pour tous les modèles stm32l1xx, il faut voir comment intégrer le code de pyjamask au nouveau projet ainsi créé
-
 - on modifie un peu le Makefile pour intégrer la cible pour le fichier .log
+
+
+2. Il reste encore des problèmes dans l'optimisation de l'implémentation de l'algo pyjamask il y a un problème avec la fonction qui compte les cycles 
