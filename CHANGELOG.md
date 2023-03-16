@@ -35,3 +35,28 @@
 </li>
 </li> </ul>
 </ol>
+
+# Nouvelles taches
+
+1. Comparer les résultats obtenus avec le code de la branche main avec ceux obtenus avec celui de la branche mem (pas urgent)
+2. Réussir à se connecter sur le port gdb pour débugger le code uploadé dans le board. (GDB outil pour embarqu", port JTAG permet de connaître tout le contenu de la mémoire/système, inspecter les registres)
+3. Simplifier le programme (morceaux de librairies qui servent à faire des interactions avec le port série qui sont inutiles), utiliser les librairies C des boards (par exemple, stmicroelectronics). Le board n'utilise pas de temps, plutôt des cycles : le board tourne à 32MHz. Chaque section de code enregistre des cycles dans un tableau -> récupérer un tableau.
+4. Apprendre à utiliser Git : faire de "git-nastique". Fork de workbench -> branche mem dans la source usubalang/workbench: mem.
+5. Créer plusieurs target pour tous les boards dans le Makefile, par exemple pour le %.log (évite de changer le nom du fichier de config à chaque fois qu'on change de board). Le Makefile ne sert à rien, il faut créer le fichier hex avec objcopy, upload avec openocd (avec les commandes nécessaires) et créer le fichier .log avec serial.sh.
+6. Optimiser code C (implémentation de l'algorithme de pyjamask) : regarder le code assembleur .
+7. Penser à une autre possibilité d'approcher le problème : prendre l'algorithme de Dahmun et l'écrire en langage assembleur (?????)
+
+# Avancement :
+
+Pour le 17 mars :
+- On a réussi à faire marcher le code de pyjamask sur le nouveau board STM32L100C-DISCO, on a des valeurs autour de 25730 cycles par octet chiffré.
+
+Voici les étapes de notre raisonnement pour trouver pourquoi le code précédent le fonctionnait pas sur le nouveau board :
+
+- on se rend compte qu'énormément de fichiers de librairies C et autres fichiers ne correspondent pas au modèle de notre nouveau board.
+
+- on a installé stm32cubeMx pour essayer d'installer/générer les fichiers et librairies nécessaires pour le nouveau board (stm32l100c-disco)
+
+- on a généré les fichiers nécessaires pour tous les modèles stm32l1xx, il faut voir comment intégrer le code de pyjamask au nouveau projet ainsi créé
+
+- on modifie un peu le Makefile pour intégrer la cible pour le fichier .log
