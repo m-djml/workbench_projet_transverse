@@ -10,7 +10,7 @@ ADDR_CYCLES=`arm-none-eabi-objdump $BINARY -t | grep bench_cycles | cut -f 1 -d 
 openocd -l /dev/null \
         -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg \
         &>/dev/null &
-# Get the pid of `openocd` (not `sudo opencd`)
+# Get the pid of `openocd` (not `sudo openocd`)
 OPENOCDPID=$!
 
 sleep 1
@@ -22,7 +22,6 @@ TMP=`mktemp`
 grep -a -v '>' $TMP | grep -a "$ADDR_CYCLES" | cut -f 2-4 -d ' ' > $OUT
 grep -a -v '>' $TMP | grep -a "$ADDR_LENS" | cut -f 2-4 -d ' ' >> $OUT
 
-rm $TMP
 
 # Kill openocd
-kill $OPENOCDPID
+sudo kill $OPENOCDPID
