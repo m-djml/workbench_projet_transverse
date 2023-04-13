@@ -124,7 +124,7 @@ void pyjamask__ (/*inputs*/ DATATYPE plaintext__[4],DATATYPE key__[15][4], /*out
 }
 
 /* Additional functions */
-uint32_t bench_speed() {
+uint32_t bench_speed(DATATYPE* plaintext[4], DATATYPE* ciphertext[4]) {
   /* inputs */
   DATATYPE plaintext__[4] = { 0 };
   DATATYPE key__[15][4] = { 0 };
@@ -132,6 +132,9 @@ uint32_t bench_speed() {
   DATATYPE ciphertext__[4] = { 0 };
   /* fun call */
   pyjamask__(plaintext__, key__,ciphertext__);
+
+  *plaintext = plaintext__;
+  *ciphertext = ciphertext__;
 
   /* Returning the number of encrypted bytes */
   return 16;

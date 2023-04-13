@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "gpio.h"
+#include "STD.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -50,6 +51,9 @@ static unsigned long get_cycle_count();
 
 unsigned long bench_cycles[] = {-1, -1, -1};
 int bench_lens[] = {-1, -1, -1};
+DATATYPE plaintext[4];
+DATATYPE ciphertext[4];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,8 +91,9 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
   for (int i = 0; i < 3; i++){
+    
     unsigned long t1 = get_cycle_count();
-    int len = bench_speed();
+    int len = bench_speed(&plaintext, &ciphertext);
     unsigned long cycles = get_cycle_count() - t1;
     bench_lens[i] = len;
     bench_cycles[i] = cycles;
