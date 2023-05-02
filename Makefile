@@ -165,17 +165,25 @@ $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
 
+
+
 # me
+OBJECT := $(filter-out build/pyjamask.o build/main.o,$(OBJECTS))
+
+# d'abord make generate_opti puis make build/stm32l1_pyjamask_opti.elf
+generate_opti: ciphers/pyjamask.c
+	$(CC) $(CFLAGS) -S $< -o build/stm32l1_pyjamask_opti.S $(LDFLAGS)
+
 startup_stm32l100xc.o: startup_stm32l100xc.S
 	arm-none-eabi-as $(ASFLAGS) -c $< -o $@
 
-build/stm32l1_pyjamask_opti.o: ciphers/pyjamask.c
-	$(CC) $(CFLAGS) -S $< -o build/stm32l1_pyjamask_opti.S $(LDFLAGS)
-	$(CC) $(CFLAGS) build/stm32l1_pyjamask_opti.S -o $@ $(LDFLAGS)
+build/stm32l1_pyjamask_opti.o: build/stm32l1_pyjamask_opti.S build/stm32l1_pyjamask_opti.S Makefile
+	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
 
-build/stm32l1_pyjamask_opti.elf: build/stm32l1_pyjamask_opti.S $(OBJECTS)
+build/stm32l1_pyjamask_opti.elf: build/stm32l1_pyjamask_opti.o startup_stm32l100xc.o $(OBJECTS) Makefile
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 	$(SZ) $@
+
 
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
@@ -195,7 +203,7 @@ $(BUILD_DIR):
 # clean up
 #######################################
 clean:
-	-rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.lst $(BUILD_DIR)/*.d 
+	-rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.lst $(BUILD_DIR)/*.d generate_opti
   
 #######################################
 # dependencies
