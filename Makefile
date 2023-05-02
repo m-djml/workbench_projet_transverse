@@ -165,6 +165,19 @@ $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
 
+# me
+startup_stm32l100xc.o: startup_stm32l100xc.S
+	arm-none-eabi-as $(ASFLAGS) -c $< -o $@
+
+build/stm32l1_pyjamask_opti.o: ciphers/pyjamask.c
+	$(CC) $(CFLAGS) -S $< -o build/stm32l1_pyjamask_opti.S $(LDFLAGS)
+	$(CC) $(CFLAGS) build/stm32l1_pyjamask_opti.S -o $@ $(LDFLAGS)
+
+build/stm32l1_pyjamask_opti.elf: build/stm32l1_pyjamask_opti.S $(OBJECTS)
+	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+	$(SZ) $@
+
+
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 	$(SZ) $@

@@ -85,19 +85,110 @@ void mat_mult__V32 (/*inputs*/ DATATYPE col__,DATATYPE vec__, /*outputs*/ DATATY
 
 }
 
+void mat_mult__V32_0 (/*inputs*/ DATATYPE vec__, /*outputs*/ DATATYPE* res__) {
+
+  // Variables declaration
+  DATATYPE _tmp5_;
+  DATATYPE _tmp6_;
+  DATATYPE mask__;
+  DATATYPE mat_col__;
+  DATATYPE res_tmp__;
+
+  // Instructions (body)
+  mat_col__ = LIFT_32(2743472261);
+  res_tmp__ = LIFT_32(0);
+  for (int i__ = 0; i__ <= 31; i__++) {
+    _tmp5_ = L_SHIFT(vec__,i__,32);
+    mask__ = RA_SHIFT(_tmp5_,31,32);
+    _tmp6_ = AND(mask__,mat_col__);
+    res_tmp__ = XOR(res_tmp__,_tmp6_);
+    mat_col__ = R_ROTATE(mat_col__,1,32);
+  }
+  *res__ = res_tmp__;
+
+}
+void mat_mult__V32_1 (/*inputs*/ DATATYPE vec__, /*outputs*/ DATATYPE* res__) {
+
+  // Variables declaration
+  DATATYPE _tmp5_;
+  DATATYPE _tmp6_;
+  DATATYPE mask__;
+  DATATYPE mat_col__;
+  DATATYPE res_tmp__;
+
+  // Instructions (body)
+  mat_col__ = LIFT_32(1665232929);
+  res_tmp__ = LIFT_32(0);
+  for (int i__ = 0; i__ <= 31; i__++) {
+    _tmp5_ = L_SHIFT(vec__,i__,32);
+    mask__ = RA_SHIFT(_tmp5_,31,32);
+    _tmp6_ = AND(mask__,mat_col__);
+    res_tmp__ = XOR(res_tmp__,_tmp6_);
+    mat_col__ = R_ROTATE(mat_col__,1,32);
+  }
+  *res__ = res_tmp__;
+
+}
+void mat_mult__V32_2 (/*inputs*/ DATATYPE vec__, /*outputs*/ DATATYPE* res__) {
+
+  // Variables declaration
+  DATATYPE _tmp5_;
+  DATATYPE _tmp6_;
+  DATATYPE mask__;
+  DATATYPE mat_col__;
+  DATATYPE res_tmp__;
+
+  // Instructions (body)
+  mat_col__ = LIFT_32(1764553344);
+  res_tmp__ = LIFT_32(0);
+  for (int i__ = 0; i__ <= 31; i__++) {
+    _tmp5_ = L_SHIFT(vec__,i__,32);
+    mask__ = RA_SHIFT(_tmp5_,31,32);
+    _tmp6_ = AND(mask__,mat_col__);
+    res_tmp__ = XOR(res_tmp__,_tmp6_);
+    mat_col__ = R_ROTATE(mat_col__,1,32);
+  }
+  *res__ = res_tmp__;
+
+}
+void mat_mult__V32_3 (/*inputs*/ DATATYPE vec__, /*outputs*/ DATATYPE* res__) {
+
+  // Variables declaration
+  DATATYPE _tmp5_;
+  DATATYPE _tmp6_;
+  DATATYPE mask__;
+  DATATYPE mat_col__;
+  DATATYPE res_tmp__;
+
+  // Instructions (body)
+  mat_col__ = LIFT_32(1218791443);
+  res_tmp__ = LIFT_32(0);
+  for (int i__ = 0; i__ <= 31; i__++) {
+    _tmp5_ = L_SHIFT(vec__,i__,32);
+    mask__ = RA_SHIFT(_tmp5_,31,32);
+    _tmp6_ = AND(mask__,mat_col__);
+    res_tmp__ = XOR(res_tmp__,_tmp6_);
+    mat_col__ = R_ROTATE(mat_col__,1,32);
+  }
+  *res__ = res_tmp__;
+
+}
+
+
 void MixRows__V32 (/*inputs*/ DATATYPE input__[4], /*outputs*/ DATATYPE output__[4]) {
 
   // Variables declaration
-  DATATYPE M__[4];
+  //DATATYPE M__[4];
 
   // Instructions (body)
-  M__[0] = LIFT_32(2743472261);
-  M__[1] = LIFT_32(1665232929);
-  M__[2] = LIFT_32(1764553344);
-  M__[3] = LIFT_32(1218791443);
-  for (int i__ = 0; i__ <= 3; i__++) {
-    mat_mult__V32(M__[i__],input__[i__],&output__[i__]);
-  }
+  //M__[0] = LIFT_32(2743472261);
+  //M__[1] = LIFT_32(1665232929);
+  //M__[2] = LIFT_32(1764553344);
+  //M__[3] = LIFT_32(1218791443);
+  mat_mult__V32_0(input__[0],&output__[0]);
+  mat_mult__V32_1(input__[1],&output__[1]);
+  mat_mult__V32_2(input__[2],&output__[2]);
+  mat_mult__V32_3(input__[3],&output__[3]);
 
 }
 

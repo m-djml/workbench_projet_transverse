@@ -1,31 +1,8 @@
-/**
-  ******************************************************************************
-  * @file      startup_stm32l100xc.s
-  * @author    MCD Application Team
-  * @brief     STM32L100XC Devices vector table for GCC toolchain.
-  *            This module performs:
-  *                - Set the initial SP
-  *                - Set the initial PC == Reset_Handler,
-  *                - Set the vector table entries with the exceptions ISR address
-  *                - Configure the clock system
-  *                - Branches to main in the C library (which eventually
-  *                  calls main()).
-  *            After Reset the Cortex-M3 processor is in Thread mode,
-  *            priority is Privileged, and the Stack is set to Main.
-  ******************************************************************************
-  *
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the 
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
-  */
-
+# 1 "startup_stm32l100xc.S"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "startup_stm32l100xc.S"
+# 29 "startup_stm32l100xc.S"
   .syntax unified
   .cpu cortex-m3
   .fpu softvfp
@@ -34,34 +11,26 @@
 .global g_pfnVectors
 .global Default_Handler
 
-/* start address for the initialization values of the .data section.
-defined in linker script */
+
+
 .word _sidata
-/* start address for the .data section. defined in linker script */
+
 .word _sdata
-/* end address for the .data section. defined in linker script */
+
 .word _edata
-/* start address for the .bss section. defined in linker script */
+
 .word _sbss
-/* end address for the .bss section. defined in linker script */
+
 .word _ebss
 
-.equ  BootRAM, 0xF108F85F
-/**
- * @brief  This is the code that gets called when the processor first
- *          starts execution following a reset event. Only the absolutely
- *          necessary set is performed, after which the application
- *          supplied main() routine is called.
- * @param  None
- * @retval : None
-*/
-
+.equ BootRAM, 0xF108F85F
+# 59 "startup_stm32l100xc.S"
   .section .text.Reset_Handler
   .weak Reset_Handler
   .type Reset_Handler, %function
 Reset_Handler:
 
-/* Copy the data segment initializers from flash to SRAM */
+
   ldr r0, =_sdata
   ldr r1, =_edata
   ldr r2, =_sidata
@@ -77,50 +46,42 @@ LoopCopyDataInit:
   adds r4, r0, r3
   cmp r4, r1
   bcc CopyDataInit
-  
-/* Zero fill the bss segment. */
+
+
   ldr r2, =_sbss
   ldr r4, =_ebss
   movs r3, #0
   b LoopFillZerobss
 
 FillZerobss:
-  str  r3, [r2]
+  str r3, [r2]
   adds r2, r2, #4
 
 LoopFillZerobss:
   cmp r2, r4
   bcc FillZerobss
 
-/* Call the clock system intitialization function.*/
-    bl  SystemInit
-/* Call static constructors */
+
+    bl SystemInit
+
     bl __libc_init_array
-/* Call the application's entry point.*/
+
   bl main
   bx lr
 .size Reset_Handler, .-Reset_Handler
-
-/**
- * @brief  This is the code that gets called when the processor receives an
- *         unexpected interrupt.  This simply enters an infinite loop, preserving
- *         the system state for examination by a debugger.
- *
- * @param  None
- * @retval : None
-*/
+# 112 "startup_stm32l100xc.S"
     .section .text.Default_Handler,"ax",%progbits
 Default_Handler:
 Infinite_Loop:
   b Infinite_Loop
   .size Default_Handler, .-Default_Handler
-/******************************************************************************
-*
-* The minimal vector table for a Cortex M3.  Note that the proper constructs
-* must be placed on this to ensure that it ends up at physical address
-* 0x0000.0000.
-*
-******************************************************************************/
+
+
+
+
+
+
+
    .section .isr_vector,"a",%progbits
   .type g_pfnVectors, %object
   .size g_pfnVectors, .-g_pfnVectors
@@ -205,17 +166,8 @@ g_pfnVectors:
   .word 0
   .word 0
   .word 0
-  .word BootRAM          /* @0x108. This is for boot in RAM mode for 
-                            STM32L100XC devices. */
-
-/*******************************************************************************
-*
-* Provide weak aliases for each Exception handler to the Default_Handler.
-* As they are weak aliases, any function with the same name will override
-* this definition.
-*
-*******************************************************************************/
-
+  .word BootRAM
+# 219 "startup_stm32l100xc.S"
   .weak NMI_Handler
   .thumb_set NMI_Handler,Default_Handler
 
@@ -398,6 +350,3 @@ g_pfnVectors:
 
   .weak COMP_ACQ_IRQHandler
    .thumb_set COMP_ACQ_IRQHandler,Default_Handler
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-
