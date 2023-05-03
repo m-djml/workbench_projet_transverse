@@ -44,15 +44,16 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-extern uint32_t bench_speed();
 
-static void SystemClock_Config(void);
-static unsigned long get_cycle_count();
+extern uint32_t bench_speed1();
+extern uint32_t bench_speed2();
+extern uint32_t bench_speed3();
+extern uint32_t bench_speed4();
 
-unsigned long bench_cycles[] = {-1, -1, -1};
-int bench_lens[] = {-1, -1, -1};
-DATATYPE plaintext[4];
-DATATYPE ciphertext[4];
+//static unsigned long get_cycle_count();
+
+unsigned long bench_times[] = {-1, -1, -1, -1};
+
 
 /* USER CODE END PV */
 
@@ -90,14 +91,18 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  for (int i = 0; i < 3; i++){
-    
-    unsigned long t1 = get_cycle_count();
-    int len = bench_speed(&plaintext, &ciphertext);
-    unsigned long cycles = get_cycle_count() - t1;
-    bench_lens[i] = len;
-    bench_cycles[i] = cycles;
+for (int i = 0; i < 1; i++){
+
+    int len1 = bench_speed1();
+    bench_times[0] = len1;
+    int len2 = bench_speed2();
+    bench_times[1] = len2;
+    int len3 = bench_speed3();
+    bench_times[2] = len3;
+    int len4 = bench_speed4();
+    bench_times[3] = len4;
   }
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
