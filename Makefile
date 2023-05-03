@@ -175,9 +175,9 @@ generate_opti: ciphers/pyjamask.c
 	$(CC) $(CFLAGS) -S $< -o build/stm32l1_pyjamask_opti.S $(LDFLAGS)
 
 startup_stm32l100xc.o: startup_stm32l100xc.S
-	arm-none-eabi-as $(ASFLAGS) -c $< -o $@
+	$(AS) $(ASFLAGS) -c $< -o $@
 
-build/stm32l1_pyjamask_opti.o: build/stm32l1_pyjamask_opti.S build/stm32l1_pyjamask_opti.S Makefile
+build/stm32l1_pyjamask_opti.o: build/stm32l1_pyjamask_opti.S Makefile
 	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
 
 build/stm32l1_pyjamask_opti.elf: build/stm32l1_pyjamask_opti.o startup_stm32l100xc.o $(OBJECTS) Makefile
@@ -203,7 +203,7 @@ $(BUILD_DIR):
 # clean up
 #######################################
 clean:
-	-rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.lst $(BUILD_DIR)/*.d generate_opti
+	-rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.lst $(BUILD_DIR)/*.d generate_opti *.o *.d
   
 #######################################
 # dependencies

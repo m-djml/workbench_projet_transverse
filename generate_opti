@@ -1,2 +1,0 @@
-build/stm32l1_pyjamask_opti.S: ciphers/pyjamask.c ciphers/arch/STD.h
-ciphers/arch/STD.h:
