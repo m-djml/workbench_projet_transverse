@@ -24,3 +24,14 @@ rm $TMP
 
 # Kill openocd
 kill $OPENOCDPID
+
+# conversion en decimal des resultats
+IFS=$' '
+# on mets les lettres en majuscules sinon ça ne convertit pas 
+for num in $(cat $OUT | tr '[:lower:]' '[:upper:]'); do
+	# on enlève les possibles caractères spéciaux
+	dec=$(echo "ibase=16; $num" | tr -d '\r' | bc)
+	tab+="$dec ";
+done
+echo $tab > $OUT
+echo Résultats : $(cat $OUT)

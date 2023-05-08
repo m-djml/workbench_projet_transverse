@@ -178,17 +178,24 @@ void mat_mult__V32_3 (/*inputs*/ DATATYPE vec__, /*outputs*/ DATATYPE* res__) {
 void MixRows__V32 (/*inputs*/ DATATYPE input__[4], /*outputs*/ DATATYPE output__[4]) {
 
   // Variables declaration
-  //DATATYPE M__[4];
 
   // Instructions (body)
+   mat_mult__V32_0(input__[0],&output__[0]);
+   mat_mult__V32_1(input__[1],&output__[1]);
+   mat_mult__V32_2(input__[2],&output__[2]);
+   mat_mult__V32_3(input__[3],&output__[3]);
+
+    // Variables declaration
+  //DATATYPE M__[4];
+//
+  //// Instructions (body)
   //M__[0] = LIFT_32(2743472261);
   //M__[1] = LIFT_32(1665232929);
   //M__[2] = LIFT_32(1764553344);
   //M__[3] = LIFT_32(1218791443);
-  mat_mult__V32_0(input__[0],&output__[0]);
-  mat_mult__V32_1(input__[1],&output__[1]);
-  mat_mult__V32_2(input__[2],&output__[2]);
-  mat_mult__V32_3(input__[3],&output__[3]);
+  //for (int i__ = 0; i__ <= 3; i__++) {
+  //  mat_mult__V32(M__[i__],input__[i__],&output__[i__]);
+  //}
 
 }
 

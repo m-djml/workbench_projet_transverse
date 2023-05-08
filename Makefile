@@ -13,7 +13,7 @@
 ######################################
 # target
 ######################################
-TARGET = stm32l1_pyjamask
+TARGET = pyjamask2
 
 
 ######################################
@@ -59,7 +59,8 @@ Src/system_stm32l1xx.c
 
 # ASM sources
 ASM_SOURCES =  \
-startup_stm32l100xc.s
+startup_stm32l100xc.s \
+# build/pyjamask2_opti.S
 
 
 #######################################
@@ -168,19 +169,18 @@ $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
 
 
 # me
-OBJECT := $(filter-out build/pyjamask.o build/main.o,$(OBJECTS))
 
-# d'abord make generate_opti puis make build/stm32l1_pyjamask_opti.elf
+# d'abord make generate_opti puis make build/pyjamask2_opti.elf
 generate_opti: ciphers/pyjamask.c
-	$(CC) $(CFLAGS) -S $< -o build/stm32l1_pyjamask_opti.S $(LDFLAGS)
+	$(CC) $(CFLAGS) -S $< -o build/pyjamask2_opti.S $(LDFLAGS)
 
 startup_stm32l100xc.o: startup_stm32l100xc.S
 	$(AS) $(ASFLAGS) -c $< -o $@
 
-build/stm32l1_pyjamask_opti.o: build/stm32l1_pyjamask_opti.S Makefile
+build/pyjamask2_opti.o: build/pyjamask2_opti.S 
 	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
 
-build/stm32l1_pyjamask_opti.elf: build/stm32l1_pyjamask_opti.o startup_stm32l100xc.o $(OBJECTS) Makefile
+build/pyjamask2_opti.elf: build/pyjamask2_opti.o startup_stm32l100xc.o $(OBJECTS) Makefile
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 	$(SZ) $@
 
@@ -213,13 +213,23 @@ clean:
 # *** EOF ***
 
 # Load .hex file to the board
-build/stm32l1_pyjamask.upload: build/stm32l1_pyjamask.hex
+build/pyjamask2.upload: build/pyjamask2.hex
 	sudo openocd -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
 	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
 
 # Save serial input to the given file
-build/stm32l1_pyjamask.log: build/stm32l1_pyjamask.hex force
-	bash ./serial.sh build/stm32l1_pyjamask.elf build/stm32l1_pyjamask.hex build/stm32l1_pyjamask.log
+build/pyjamask2.log: build/pyjamask2.hex force
+	bash ./serial_dec.sh build/pyjamask2.elf build/pyjamask2.hex build/pyjamask2.log
+
+# Load .hex file to the board (version optimisee)
+build/pyjamask2_opti.upload: build/pyjamask2_opti.hex
+	sudo openocd -f /usr/share/openocd/scripts/board/stm32ldiscovery.cfg \
+	                -c "init; reset halt; flash write_image erase $<; reset run; exit"
+
+# Save serial input to the given file (version optimisee)
+build/pyjamask2_opti.log: build/pyjamask2_opti.hex force
+	bash ./serial_dec.sh build/pyjamask2_opti.elf build/pyjamask2_opti.hex build/pyjamask2_opti.log
+
 
 force:
 	true
